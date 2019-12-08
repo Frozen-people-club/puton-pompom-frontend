@@ -134,7 +134,21 @@ handleResponse(response) {
     if (!weatherData) return <div>Loading</div>;
    
     return (
-      <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature}/>
+      <div className = "App">
+        <div className = {'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
+        <div className = {'container-fluid'}>
+        <div className={'row'}>
+        <div className ={'col-xl-5 col-lg-6'}>
+          <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
+        </div>
+        <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
+          <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
+        </div>
+
+        </div>
+        </div>
+        </div>
+      </div>
     )
 }
 }
