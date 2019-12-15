@@ -30,7 +30,11 @@ componentWillMount() {
     'Yaroslavl';
     fetch(URL).then(res => res.json()).then(json => {
       this.setState({ weatherData: this.mapDataToWeatherInterface(json) });
-      this.setState({forecast: this.mapDataToWeatherInterface(json)});
+    });
+    const URLF = "https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=" + 
+    'Yaroslavl';
+    fetch(URLF).then(res => res.json()).then(json => {
+      this.setState({ forecast: this.mapDataToForecastInterface(json) });
     });
    }
 
@@ -39,11 +43,12 @@ componentWillMount() {
     fetch(`https://puton-pompom.herokuapp.com/api/v1.0/current?q=Yaroslavl`)
     .then(res => res.json()).then(json => {
       this.setState({ weatherData: this.mapDataToWeatherInterface(json) });
-      this.setState({forecast: this.mapDataToWeatherInterface(json)});
+    });
+    fetch(`https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=Yaroslavl`)
+    .then(res => res.json()).then(json => {
+      this.setState({ forecast: this.mapDataToForecastInterface(json) });
     });
    }
-
-  
 
 handleResponse(response) {
   if (response.ok) {
@@ -101,7 +106,6 @@ handleResponse(response) {
     const mapped = {
       city: data.name,
       country: data.sys.country,
-      forecast: data.forecast,
       date: data.dt * 1000,
       humidity: data.main.humidity,
       icon_id: data.weather[0].id,
@@ -128,7 +132,23 @@ handleResponse(response) {
     return mapped;
   };
 
-
+  mapDataToForecastInterface = data => {
+    let forecast = {
+     city: data.city.name,
+     country: data.city.country,
+     date: [],
+     temperature: [],
+     dt_txt : []
+    };
+     data.list.forEach(element => {
+       forecast.date.push(element.dt * 1000);
+       forecast.temperature.push(Math.round(element.main.temp - 273.15));
+       if (element.dt_txt) {
+         forecast.dt_txt.push(element.dt_txt.slice(11, 16));
+       }
+     });
+   return forecast;
+ }
 
 
   render() {

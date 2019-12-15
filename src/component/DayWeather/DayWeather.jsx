@@ -5,12 +5,12 @@ class DayWeather extends Component{
         super(props);
         this.state = {
             title: this.props.title,
-            forecast: this.props.forecast,
-            times: []
+            forecast: this.props.forecast
         }
     }
 
     componentDidMount() {
+        console.log(this.state.forecast);
     }
     
       render() { 
@@ -19,7 +19,10 @@ class DayWeather extends Component{
             <div className='dayWeather__title'>
                 {this.state.title}
             </div>
-        </div>     
+            <div className='dayWeater__times'>
+            </div>
+        </div>
+         
         )
       }
 }
