@@ -12,20 +12,21 @@ class CurrentWeather extends Component{
 }
 
     componentDidMount() {
-
-        var min = new Date().getMinutes();
-        var hours = new Date().getHours();
-        this.setState({
-            date: hours + ':' + min
-        })
+        this.intervalId = setInterval(() => {
+            var min = new Date().getMinutes();
+            var hours = new Date().getHours();
+            this.setState({
+                date: hours + ':' + min
+            })
+        }, 1000)
     }
     
       render() { 
-        return ( <div class="currentWeather">
+        return ( <div className="currentWeather">
             <div className='currentWeather__date'>{this.state.date}</div>
-                <div class="background__1">
-                        <div class="currentWeather__img">
-                            <img class="currentWeather__img__avocado" src= {require('../img/avocado.svg')} alt='avocado' />
+                <div className="background__1">
+                        <div className="currentWeather__img">
+                            <img className="currentWeather__img__avocado" src= {require('../img/avocado.svg')} alt='avocado' />
                         </div>   
                 </div>
                 <div className='currentWeather__weather'>

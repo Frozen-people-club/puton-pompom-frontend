@@ -115,7 +115,6 @@ handleResponse(response) {
       condition: data.cod
     };
 
-
     if (data.dt_txt) {
       mapped.dt_txt = data.dt_txt;
     }
@@ -134,11 +133,11 @@ handleResponse(response) {
 
   mapDataToForecastInterface = data => {
     let forecast = {
-     city: data.city.name,
-     country: data.city.country,
-     date: [],
-     temperature: [],
-     dt_txt : []
+      city: data.city.name,
+      country: data.city.country,
+      date: [],
+      temperature: [],
+      dt_txt : []
     };
      data.list.forEach(element => {
        forecast.date.push(element.dt * 1000);
@@ -165,7 +164,8 @@ handleResponse(response) {
           <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
         </div>
         <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
-          <DayWeather title = 'Погода на день'/>
+          <DayWeather title = 'Погода на день' city = {forecast.city} temp = {forecast.temperature} date = {forecast.date}
+          hours = {forecast.dt_txt}/>
         </div>
 
         </div>
