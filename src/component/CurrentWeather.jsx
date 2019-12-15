@@ -20,6 +20,10 @@ class CurrentWeather extends Component{
             })
         }, 1000)
     }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+      }
     
       render() { 
         return ( <div className="currentWeather">

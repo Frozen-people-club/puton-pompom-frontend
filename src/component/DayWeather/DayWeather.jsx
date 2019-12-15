@@ -4,37 +4,26 @@ class DayWeather extends Component{
     constructor(props){
         super(props);
         this.state = {
-            title: this.props.title,
             city: this.props.city,
             temp: this.props.temp, 
-            hours: this.props.hours 
+            hours: this.props.hours,
+            data: ['00:00', '03:00','06:00','09:00','12:00',
+            '15:00', '18:00', '21:00']
         }
     }
 
-    componentDidMount() {
-        //console.log(this.state.forecast);
+    componentWillMount() {
     }
     
-      render() { 
+      render() {
         return ( 
         <div className="dayWeather">
             <div className='dayWeather__title'>
-                {this.state.title}
+                {this.props.title}
             </div>
-            
-            <div className="dayWeather__weather">
-                <span>fff</span>
-            </div>
-
-            
-            <div className='dayWeater__times'>
-                
-            </div>
-            <div className='dayWeater__times'>
-                
-            </div>            
+            <ul>
+            </ul>
         </div>
-         
         )
       }
 }

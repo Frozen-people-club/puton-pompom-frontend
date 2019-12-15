@@ -129,7 +129,7 @@ handleResponse(response) {
     }
 
     return mapped;
-  };
+  }
 
   mapDataToForecastInterface = data => {
     let forecast = {
@@ -164,7 +164,7 @@ handleResponse(response) {
           <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
         </div>
         <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
-          <DayWeather title = 'Погода на день' city = {forecast.city} temp = {forecast.temperature} date = {forecast.date}
+          <DayWeather title = 'Погода на день' date = {forecast.date} city = {forecast.city} temp = {forecast.temperature} date = {forecast.date}
           hours = {forecast.dt_txt}/>
         </div>
 
