@@ -2,7 +2,7 @@ import React, { Component, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import CurrentWeather from './component/CurrentWeather';
-import DayWeather from './component/DayWeather/DayWeather';
+import DayWeatherList from './component/DayWeather/DayWeatherList';
 
 class App extends Component {
 
@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       weatherData: null,
       forecast: [],
-      city: 'Yaroslavl'
+      city: 'Yaroslavl',
+      active: 0
     };
   }
 
@@ -48,6 +49,7 @@ handleResponse(response) {
 }
   
   mapDataToWeatherInterface = data => {
+
     const mapped = {
       city: data.name,
       country: data.sys.country,
@@ -61,7 +63,7 @@ handleResponse(response) {
     };
 
     if (data.dt_txt) {
-      mapped.dt_txt = data.dt_txt;
+        mapped.dt_txt = data.dt_txt.slice(11, 16);
     }
 
     if (data.weather[0].icon) {
@@ -77,22 +79,36 @@ handleResponse(response) {
   }
 
   mapDataToForecastInterface = data => {
-    let forecast = {
-      city: data.city.name,
-      country: data.city.country,
-      date: [],
-      temperature: [],
-      dt_txt : []
-    };
-     data.list.forEach(element => {
-       forecast.date.push(element.dt * 1000);
-       forecast.temperature.push(Math.round(element.main.temp - 273.15));
-       if (element.dt_txt) {
-         forecast.dt_txt.push(element.dt_txt.slice(11, 16));
-       }
-     });
-   return forecast;
+    let forecast =[];
+      for (let i = 0; i < data.list.length; i++) {
+        forecast.push(this.mapDataToWeatherInterface(data.list[i]));
+      }
+    let current = 
+      {
+        '0' : forecast.slice(0, 8),
+        '1' : forecast.slice(8, 16),
+        '2' : forecast.slice(16, 24),
+        '3' : forecast.slice(24, 32),
+        '4' : forecast.slice(32, 40)
+      };
+   return current;
  }
+
+ getForecast(city) {
+  fetch(
+    `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=${city}`
+  )
+    .then(res => this.handleResponse(res))
+    .then(result => {
+        let forecast = [];
+        for (let i = 0; i < result.list.length; i += 8) {
+          forecast.push(this.mapDataToWeatherInterface(result.list[i + 4]));
+        }
+        return forecast;
+    }).catch(function(error) {
+      console.log('Request failed', error)
+  });
+}
 
 
   render() {
@@ -109,8 +125,7 @@ handleResponse(response) {
                 <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
               </div>
               <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
-                <DayWeather title = 'Погода на день' date = {forecast.date} city = {forecast.city} temp = {forecast.temperature} date = {forecast.date}
-                hours = {forecast.dt_txt}/>
+                <DayWeatherList data = {forecast[0]}/>
               </div>
             </div>
           </div>

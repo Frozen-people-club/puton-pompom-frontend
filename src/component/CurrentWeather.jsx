@@ -15,8 +15,11 @@ class CurrentWeather extends Component{
         this.intervalId = setInterval(() => {
             var min = new Date().getMinutes();
             var hours = new Date().getHours();
+            var cur_hours, cur_min;
+            cur_hours = (hours/10 < 1) ? ("0"+ hours.toString()) : hours;
+            cur_min = (min/10 < 1) ? ("0"+ min.toString()) : min;
             this.setState({
-                date: hours + ':' + min
+                date: cur_hours + ':' + cur_min
             })
         }, 1000)
     }
