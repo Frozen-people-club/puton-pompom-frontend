@@ -14,18 +14,8 @@ class App extends Component {
       city: 'Yaroslavl'
     };
   }
-/*
-componentWillMount() {
-    let current = this.getWeather(this.state.city);
-    let fore = this.getForecast(this.state.city);
-    this.setState({
-    weatherData: current,
-    forecast: fore
-    });
- }*/
 
   componentDidMount() {
-
     const URL = "https://puton-pompom.herokuapp.com/api/v1.0/current?q=" +
     'Yaroslavl';
     fetch(URL).then(res => res.json()).then(json => {
@@ -39,7 +29,6 @@ componentWillMount() {
    }
 
    componentWillMount() {
-
     fetch(`https://puton-pompom.herokuapp.com/api/v1.0/current?q=Yaroslavl`)
     .then(res => res.json()).then(json => {
       this.setState({ weatherData: this.mapDataToWeatherInterface(json) });
@@ -57,51 +46,7 @@ handleResponse(response) {
     throw new Error("Error: Location " + response.statusText);
   }
 }
-
-
- /* getWeather(current) {
-    const mappedData = this.mapDataToWeatherInterface(current);
-    return mappedData;
-    }
-    */
-  getWeather(city) {
-      fetch(
-        `https://puton-pompom.herokuapp.com/api/v1.0/current?q=${city}`
-      )
-        .then(res => this.handleResponse(res))
-        .then(weather => {
-      
-           return this.mapDataToWeatherInterface(weather);
-
-        }).catch(function(error) {
-          console.log('Request failed', error)
-      });
-    }
-    getForecast(city) {
-      fetch(
-        `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=${city}`
-      )
-        .then(res => this.handleResponse(res))
-        .then(result => {
-            let forecast = [];
-            for (let i = 0; i < result.list.length; i += 8) {
-              forecast.push(this.mapDataToWeatherInterface(result.list[i + 4]));
-            }
-            return forecast;
-        }).catch(function(error) {
-          console.log('Request failed', error)
-      });
-    }
-
- /* getForecast(fore) {
-    let result = fore;
-    const forecast = [];
-    for (let i = 0; i < result.list.length; i += 8) {
-        forecast.push(this.mapDataToWeatherInterface(result.list[i + 4]));
-    }
-    return forecast;
-   }
-*/
+  
   mapDataToWeatherInterface = data => {
     const mapped = {
       city: data.name,
@@ -158,22 +103,21 @@ handleResponse(response) {
     return (
       <div className = "App">
         <div className = {'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
-        <div className = {'container-fluid'}>
-        <div className={'row'}>
-        <div className ={'col-xl-5 col-lg-6'}>
-          <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
-        </div>
-        <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
-          <DayWeather title = 'Погода на день' date = {forecast.date} city = {forecast.city} temp = {forecast.temperature} date = {forecast.date}
-          hours = {forecast.dt_txt}/>
-        </div>
-
-        </div>
-        </div>
+          <div className = {'container-fluid'}>
+            <div className={'row'}>
+              <div className ={'col-xl-5 col-lg-6'}>
+                <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
+              </div>
+              <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
+                <DayWeather title = 'Погода на день' date = {forecast.date} city = {forecast.city} temp = {forecast.temperature} date = {forecast.date}
+                hours = {forecast.dt_txt}/>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
-}
+  }
 }
 
 export default App;
