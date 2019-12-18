@@ -4,7 +4,7 @@ class DayWeatherItem extends Component{
     constructor(props){
         super(props);
         this.state = {
-            temperature: this.props.temperature, 
+            temp: this.props.temp,
             description: this.props.description,
             date: this.props.date
         }
@@ -16,7 +16,9 @@ class DayWeatherItem extends Component{
         <div className="dayWeatherItem">
              
             <div className="dayWeatherItem__temperature">
-                {this.state.temperature}
+                {this.props.date}
+                {this.props.description}
+                {this.props.temp}
             </div>
         </div>
         )

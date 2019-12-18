@@ -13,12 +13,16 @@ class DayWeatherList extends Component{
     }
     
       render() {
-        /*const list = [];
-        list = this.props.data.map((value) => {
-            return <DayWeatherItem temperature={value.temperature}/>
-        }); */
+       /* let list = this.props.data[0].map((value) => {
+              return <DayWeatherItem temp={value.temperature}/>
+          });*/
+       let list = [];
+       for (let i=0; i< 8; i++)
+           list.push( <DayWeatherItem temp = {this.props.data[i].temperature} date = {this.props.data[i].dt_txt} description={this.props.data[i].description}/>);
         return ( 
         <div className="dayWeatherList">
+            {list}
+
         </div>
         )
       }
