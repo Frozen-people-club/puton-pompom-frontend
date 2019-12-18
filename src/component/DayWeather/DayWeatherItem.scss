@@ -1,0 +1,18 @@
+.dayWeatherItem {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px solid #E4E3E4;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.dayWeatherItem__date {
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.dayWeatherItem__temp {
+    font-size: 23px;
+    line-height: 27px;
+}

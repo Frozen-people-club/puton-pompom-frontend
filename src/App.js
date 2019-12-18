@@ -17,38 +17,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    /*const URL = "https://puton-pompom.herokuapp.com/api/v1.0/current?q=" +
-    'Yaroslavl';
-    fetch(URL).then(res => res.json()).then(json => {
-      this.setState({ weatherData: this.mapDataToWeatherInterface(json) });
-    });
-    const URLF = "https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=" + 
-    'Yaroslavl';
-    fetch(URLF).then(res => res.json()).then(json => {
-      this.setState({ forecast: this.mapDataToForecastInterface(json) });
-    });*/
     this.getWeather();
-   }
-
-   /*componentWillMount() {
-    fetch(`https://puton-pompom.herokuapp.com/api/v1.0/current?q=Yaroslavl`)
-    .then(res => res.json()).then(json => {
-      this.setState({ weatherData: this.mapDataToWeatherInterface(json) });
-    });
-    fetch(`https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=Yaroslavl`)
-    .then(res => res.json()).then(json => {
-      this.setState({ forecast: this.mapDataToForecastInterface(json) });
-    });
-   }*/
-
-handleResponse(response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    throw new Error("Error: Location " + response.statusText);
   }
-}
-  
+
   mapDataToWeatherInterface = data => {
 
     const mapped = {
@@ -64,7 +35,7 @@ handleResponse(response) {
     };
 
     if (data.dt_txt) {
-        mapped.dt_txt = data.dt_txt.slice(11, 16);
+      mapped.dt_txt = data.dt_txt.slice(11, 16);
     }
 
     if (data.weather[0].icon) {
@@ -80,53 +51,50 @@ handleResponse(response) {
   }
 
   mapDataToForecastInterface = data => {
-    let forecast =[];
-      for (let i = 0; i < data.list.length; i++) {
-        forecast.push(this.mapDataToWeatherInterface(data.list[i]));
-      }
-    let current = 
-      {
-        '0' : forecast.slice(0, 8),
-        '1' : forecast.slice(8, 16),
-        '2' : forecast.slice(16, 24),
-        '3' : forecast.slice(24, 32),
-        '4' : forecast.slice(32, 40)
-      };
-   return current;
- }
-
- getForecast(mappedData) {
-     const URLF = "https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=" +
-         'Yaroslavl';
-     fetch(URLF).then(res => res.json()).then(json =>
-         this.mapDataToForecastInterface(json) )
-         .then (res => {
-             this.setState({
-                 forecast: res,
-                 weatherData: mappedData
-             })
-         })
-    .catch(function(error) {
-      console.log('Request failed', error)
-  });
-}
-
-    getWeather() {
-        const URL = "https://puton-pompom.herokuapp.com/api/v1.0/current?q=" +
-            'Yaroslavl';
-        fetch(URL).then(res => res.json()).then(json => this.mapDataToWeatherInterface(json))
-            .then(mappedData => this.getForecast(mappedData))
-            .catch(error => {
-                console.error(
-                    `Error fetching current weather for ${this.state.city}: `,
-                    error
-                );
-                this.setState({ error: error.message });
-            });
+    let forecast = [];
+    for (let i = 0; i < data.list.length; i++) {
+      forecast.push(this.mapDataToWeatherInterface(data.list[i]));
     }
+    let current =
+    {
+      '0': forecast.slice(0, 8),
+      '1': forecast.slice(8, 16),
+      '2': forecast.slice(16, 24),
+      '3': forecast.slice(24, 32),
+      '4': forecast.slice(32, 40)
+    };
+    return current;
+  }
 
+  getForecast(mappedData) {
+    const URLF = "https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=" +
+      'Yaroslavl';
+    fetch(URLF).then(res => res.json()).then(json =>
+      this.mapDataToForecastInterface(json))
+      .then(res => {
+        this.setState({
+          forecast: res,
+          weatherData: mappedData
+        })
+      })
+      .catch(function (error) {
+        console.log('Request failed', error)
+      });
+  }
 
-
+  getWeather() {
+    const URL = "https://puton-pompom.herokuapp.com/api/v1.0/current?q=" +
+      'Yaroslavl';
+    fetch(URL).then(res => res.json()).then(json => this.mapDataToWeatherInterface(json))
+      .then(mappedData => this.getForecast(mappedData))
+      .catch(error => {
+        console.error(
+          `Error fetching current weather for ${this.state.city}: `,
+          error
+        );
+        this.setState({ error: error.message });
+      });
+  }
 
   render() {
     const weatherData = this.state.weatherData;
@@ -138,16 +106,15 @@ handleResponse(response) {
           return <DayWeatherList  data={obj}/>})*/
 
     return (
-      <div className = "App">
-        <div className = {'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
-          <div className = {'container-fluid'}>
+      <div className="App">
+        <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
+          <div className={'container-fluid'}>
             <div className={'row'}>
-              <div className ={'col-xl-5 col-lg-6'}>
-                <CurrentWeather city = {weatherData.city} temp = {weatherData.temperature} description = {weatherData.description}/>
-                <DayWeatherList data = {forecast[0]} />
+              <div className={'col-xl-5 col-lg-6'}>
+                <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} />
               </div>
-              <div className ={'col-xl-5 offset-xl-2 col-lg-6'}>
-
+              <div className={'col-xl-5 offset-xl-2 col-lg-6'}>
+                <DayWeatherList data={forecast[0]} />
               </div>
             </div>
           </div>

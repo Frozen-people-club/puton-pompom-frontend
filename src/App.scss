@@ -1,6 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./component/currentweather.scss";
 @import "./component/DayWeather/DayWeather.scss";
+@import "./component/DayWeather/DayWeatherItem.scss";
+@import "./component/DayWeather/DayWeatherList.scss";
 
 @font-face {
   font-family: Roboto; /* Имя шрифта */
@@ -13,6 +15,7 @@
   text-align: center;
   padding: 100px 0;
   font-family: Roboto;
+  color: #5d5f62;
 }
 
 .App__slider{
