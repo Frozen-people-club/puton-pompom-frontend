@@ -9,6 +9,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.updateData = this.updateData.bind(this);
     this.state = {
       weatherData: null,
       forecast: [],
@@ -56,6 +57,10 @@ class App extends Component {
     }
 
     return mapped;
+  }
+
+  updateData(value) {
+    this.setState(value);
   }
 
   mapDataToForecastInterface = data => {
@@ -122,12 +127,12 @@ class App extends Component {
                 <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} />
               </div>
               <div className={'col-xl-5 offset-xl-2 col-lg-6'}>
-                <DayWeatherList data={forecast[0]} />
+                <DayWeatherList data={forecast[this.state.active]} />
               </div>
             </div>
           </div>
         </div>
-        <ButtonMenu dayWeek = {forecast}/>
+        <ButtonMenu dayWeek = {forecast} active = {this.state.active} updateData={this.updateData}/>
       </div>
     )
   }

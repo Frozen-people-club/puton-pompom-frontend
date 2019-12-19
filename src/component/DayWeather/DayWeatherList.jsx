@@ -16,7 +16,7 @@ class DayWeatherList extends Component {
             list.push(<DayWeatherItem temp={this.props.data[i].temperature} date={this.props.data[i].dt_txt} description={this.props.data[i].description} />);
         return (
             <div className="dayWeatherList">
-                <div className ="dayWeatherList__title">Today`s changes</div>
+                <div className ="dayWeatherList__title">Daily forecast</div>
                 <div className="dayWeatherList__items">{list}</div>
             </div>
         )
