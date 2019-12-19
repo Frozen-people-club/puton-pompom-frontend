@@ -7,7 +7,11 @@
   line-height: 21px;
   background: white;
   color: #7F8185;
+  margin-right: 30px;
 
+  &:last-child{
+    margin-right: 0;
+  }
   &:hover {
     background: #85C0DA;
     color: white;

@@ -8,7 +8,7 @@ class ButtonMenu extends Component {
             return <Button key={index} index={index} dayWeek={val[0].dayWeek} class={(index === active) ? 'button button__active' : 'button'} updateData={this.props.updateData}/>
         });
         return (
-            <div> {list}</div>)
+            <div className="ButtonMenu"> {list}</div>)
     }
 }
 
