@@ -4,7 +4,6 @@ import './App.scss';
 import CurrentWeather from './component/CurrentWeather';
 import DayWeatherList from './component/DayWeather/DayWeatherList';
 import ButtonMenu from './component/ButtonMenu/ButtonMenu';
-import Search from './component/Search/Search';
 
 class App extends Component {
 
@@ -15,7 +14,7 @@ class App extends Component {
     this.state = {
       weatherData: null,
       forecast: [],
-      city: 'London',
+      city: 'Yaroslavl',
       active: 0
     };
   }
@@ -110,7 +109,6 @@ class App extends Component {
   }
 
   handleSubmit(e) {
-    //alert('The value is: ' + this.input.value);
     this.setState({
       city: this.input.value
     });
@@ -129,11 +127,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <form onSubmit={this.handleSubmit}>
+        <form className="Search" onSubmit={this.handleSubmit}>
             <label>
-              <input type="text" placeholder="Search the city.." ref={(input) => this.input = input} />
+              <input className="Search__input" type="text" placeholder="Search the city.." ref={(input) => this.input = input} />
             </label>
-            <input type="submit" value="Submit" />
+            <input className="Search__submit" type="submit" value="Submit" />
           </form>
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
