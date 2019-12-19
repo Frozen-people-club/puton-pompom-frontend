@@ -12,6 +12,9 @@
     background: #85C0DA;
     color: white;
   }
+  &:focus {
+    outline: none;
+  }
 }
 
 .button__active{

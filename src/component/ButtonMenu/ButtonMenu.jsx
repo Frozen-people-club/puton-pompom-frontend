@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Button from "../Button/Button"
-const ButtonMenu = (props) => {
-    return (
-        <div><Button dayWeek={props.dayWeek}/></div>)
+
+class ButtonMenu extends Component {
+    render() {
+        let list = this.props.dayWeek.map((val, index) => {
+            return <Button key={index} dayWeek={val[0].dayWeek}/>
+        });
+        return (
+            <div> {list}</div>)
+    }
 }
 
 export default ButtonMenu;

@@ -64,13 +64,13 @@ class App extends Component {
       forecast.push(this.mapDataToWeatherInterface(data.list[i]));
     }
     let current =
-    {
-      '0': forecast.slice(0, 8),
+    [forecast.slice(0, 8), forecast.slice(8, 16), forecast.slice(16, 24), forecast.slice(24, 32), forecast.slice(32, 40)]
+      /*'0': forecast.slice(0, 8),
       '1': forecast.slice(8, 16),
       '2': forecast.slice(16, 24),
       '3': forecast.slice(24, 32),
       '4': forecast.slice(32, 40)
-    };
+    };*/
     return current;
   }
 
@@ -127,7 +127,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <ButtonMenu dayWeek = {forecast[0][0].dayWeek}/>
+        <ButtonMenu dayWeek = {forecast}/>
       </div>
     )
   }
