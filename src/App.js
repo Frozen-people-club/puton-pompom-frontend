@@ -4,16 +4,18 @@ import './App.scss';
 import CurrentWeather from './component/CurrentWeather';
 import DayWeatherList from './component/DayWeather/DayWeatherList';
 import ButtonMenu from './component/ButtonMenu/ButtonMenu';
+import Search from './component/Search/Search';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.updateData = this.updateData.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       weatherData: null,
       forecast: [],
-      city: 'Yaroslavl',
+      city: 'London',
       active: 0
     };
   }
@@ -80,8 +82,7 @@ class App extends Component {
   }
 
   getForecast(mappedData) {
-    const URLF = "https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=" +
-      'Yaroslavl';
+    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=${this.state.city}`;
     fetch(URLF).then(res => res.json()).then(json =>
       this.mapDataToForecastInterface(json))
       .then(res => {
@@ -96,8 +97,7 @@ class App extends Component {
   }
 
   getWeather() {
-    const URL = "https://puton-pompom.herokuapp.com/api/v1.0/current?q=" +
-      'Yaroslavl';
+    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=${this.state.city}`;
     fetch(URL).then(res => res.json()).then(json => this.mapDataToWeatherInterface(json))
       .then(mappedData => this.getForecast(mappedData))
       .catch(error => {
@@ -107,6 +107,15 @@ class App extends Component {
         );
         this.setState({ error: error.message });
       });
+  }
+
+  handleSubmit(e) {
+    //alert('The value is: ' + this.input.value);
+    this.setState({
+      city: this.input.value
+    });
+    this.getWeather();
+    e.preventDefault();
   }
 
   render() {
@@ -120,6 +129,12 @@ class App extends Component {
 
     return (
       <div className="App">
+        <form onSubmit={this.handleSubmit}>
+            <label>
+              <input type="text" placeholder="Search the city.." ref={(input) => this.input = input} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
             <div className={'row'}>
