@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.scss';
 import CurrentWeather from './component/CurrentWeather';
 import DayWeatherList from './component/DayWeather/DayWeatherList';
+import ButtonMenu from './component/ButtonMenu/ButtonMenu';
 
 class App extends Component {
 
@@ -34,8 +35,15 @@ class App extends Component {
       condition: data.cod
     };
 
+    let getWeekDay = (date) => {
+      let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      return days[date.getDay()];
+    }
+
     if (data.dt_txt) {
       mapped.dt_txt = data.dt_txt.slice(11, 16);
+      let day = new Date(+data.dt_txt.slice(0, 4), (+data.dt_txt.slice(5, 7) - 1), +data.dt_txt.slice(8, 10))
+      mapped.dayWeek = getWeekDay(day);
     }
 
     if (data.weather[0].icon) {
@@ -119,6 +127,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <ButtonMenu dayWeek = {forecast[0][0].dayWeek}/>
       </div>
     )
   }
