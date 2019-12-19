@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5745e7f-8485-482a-8d23-30221a5ed9d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Button/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Button/Button.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ButtonMenu/ButtonMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ButtonMenu/ButtonMenu.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/DayWeather/DayWeatherList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/DayWeather/DayWeatherList.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -95,8 +92,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/DayWeather/DayWeatherList.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+            <state relative-caret-position="136">
+              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -219,7 +216,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11193000" />
+    <option name="totallyTimeSpent" value="11326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -323,8 +320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/DayWeather/DayWeatherList.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+        <state relative-caret-position="136">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
         </state>
       </provider>
     </entry>

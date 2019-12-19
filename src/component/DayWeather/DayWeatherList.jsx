@@ -8,7 +8,6 @@ class DayWeatherList extends Component {
             data: this.props.data
         }
     }
-
     render() {
 
         let list = [];
