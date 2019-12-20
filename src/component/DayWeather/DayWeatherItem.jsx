@@ -64,8 +64,6 @@ class DayWeatherItem extends Component {
                 return 'CLEAR_DAY';
 
         }
-
-
 }
     render() {
         return (

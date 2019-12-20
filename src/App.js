@@ -4,6 +4,7 @@ import './App.scss';
 import CurrentWeather from './component/CurrentWeather';
 import DayWeatherList from './component/DayWeather/DayWeatherList';
 import ButtonMenu from './component/ButtonMenu/ButtonMenu';
+import * as Snow from 'react-snow-effect';
 
 class App extends Component {
 
@@ -23,6 +24,61 @@ class App extends Component {
     this.getWeather();
   }
 
+  iconInterface = (icon) => {
+    switch(icon){
+      case 'o1d':
+        return 'CLEAR_DAY';
+        break;
+      case '01n':
+        return 'CLEAR_NIGHT';
+        break;
+      case '03d':
+        return 'PARTLY_CLOUDY_DAY';
+        break;
+      case '03n':
+        return 'PARTLY_CLOUDY_NIGHT';
+        break;
+      case '04d':
+        return 'CLOUDY';
+        break;
+      case '04n':
+        return 'CLOUDY';
+        break;
+      case '09d':
+        return 'RAIN';
+        break;
+      case '09n':
+        return 'RAIN';
+        break;
+      case '10d':
+        return 'RAIN';
+        break;
+      case '10n':
+        return 'RAIN';
+        break;
+      case '11d':
+        return 'RAIN';
+        break;
+      case '11n':
+        return 'RAIN';
+        break;
+      case '13d':
+        return 'SNOW';
+        break;
+      case '13n':
+        return 'SNOW';
+        break;
+      case '50d':
+        return 'FOG';
+        break;
+      case '50n':
+        return 'FOG';
+        break;
+      default:
+        return 'CLEAR_DAY';
+
+    }
+  }
   mapDataToWeatherInterface = data => {
 
     const mapped = {
@@ -34,7 +90,8 @@ class App extends Component {
       temperature: Math.round(data.main.temp - 273.15),
       description: data.weather[0].description,
       wind_speed: Math.round(data.wind.speed * 3.6), // convert from m/s to km/h
-      condition: data.cod
+      condition: data.cod,
+      icon_desc: this.iconInterface(data.weather[0].icon)
     };
 
     let getWeekDay = (date) => {
@@ -81,7 +138,7 @@ class App extends Component {
   }
 
   getForecast(mappedData) {
-    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=Paris`;
+    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=Magnitogorsk`;
     fetch(URLF).then(res => res.json()).then(json =>
       this.mapDataToForecastInterface(json))
       .then(res => {
@@ -96,7 +153,7 @@ class App extends Component {
   }
 
   getWeather() {
-    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=Paris`;
+    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=Magnitogorsk`;
     fetch(URL).then(res => res.json()).then(json => this.mapDataToWeatherInterface(json))
       .then(mappedData => this.getForecast(mappedData))
       .catch(error => {
@@ -136,8 +193,9 @@ class App extends Component {
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
             <div className={'row'}>
+              {weatherData.icon_desc === 'SNOW' ?<Snow /> : <></>}
               <div className={'col-xl-5 offset-xl-1 col-lg-6'}>
-                <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} />
+                <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc}/>
               </div>
               <div className={'col-xl-5 col-lg-6'}>
                 <DayWeatherList data={forecast[this.state.active]} />
