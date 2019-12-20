@@ -136,10 +136,10 @@ class App extends Component {
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
             <div className={'row'}>
-              <div className={'col-xl-5 offset-xl-1 col-lg-5 offset-lg-1'}>
+              <div className={'col-xl-5 offset-xl-1 col-lg-6'}>
                 <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} />
               </div>
-              <div className={'col-xl-5 col-lg-5'}>
+              <div className={'col-xl-5 col-lg-6'}>
                 <DayWeatherList data={forecast[this.state.active]} />
               </div>
               <div className={'col-xl-1 col-lg-1'}></div>
