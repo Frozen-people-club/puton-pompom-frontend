@@ -4,10 +4,10 @@ class CurrentWeather extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            city: this.props.city,
-            temp: this.props.temp,
+           /* city: this.props.city,
+            temp: this.props.temp,*/
             date: '',
-            description: this.props.description
+           /* description: this.props.description*/
         }
     }
 
@@ -32,7 +32,7 @@ class CurrentWeather extends Component {
         return (
             <div className="currentWeather">
                 <div className='currentWeather__date'>
-                    {this.state.date}
+                    {this.props.date}
                 </div>
                 <div className="background__1">
                     <div className="currentWeather__img">
@@ -41,16 +41,16 @@ class CurrentWeather extends Component {
                 </div>
                 <div className='currentWeather__weather'>
                     <div className='currentWeather__temp'>
-                        {this.state.temp}°
+                        {this.props.temp}°
                 </div>
                     <div className='currentWeather__description'>
-                        {this.state.description}
+                        {this.props.description}
                     </div>
                 </div>
                 <div className='currentWeather__city'>
                     <img className='currentWeather__city__img' src={require('../img/Ellipse 2.svg')} />
                     <div className='currentWeather__city__name'>
-                        {this.state.city}
+                        {this.props.city}
                     </div>
                 </div>
             </div>

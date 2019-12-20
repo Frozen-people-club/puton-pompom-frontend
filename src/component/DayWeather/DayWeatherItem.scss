@@ -5,6 +5,7 @@
     border-bottom: 1px solid #E4E3E4;
     padding-bottom: 8px;
     padding-top: 8px;
+    align-items: center;
 }
 
 .dayWeatherItem__date {
@@ -15,4 +16,8 @@
 .dayWeatherItem__temp {
     font-size: 23px;
     line-height: 27px;
+    width: 42px;
+}
+.dayWeatherItem__icon {
+    display: inline-flex;
 }

@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   getForecast(mappedData) {
-    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=${this.state.city}`;
+    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=Paris`;
     fetch(URLF).then(res => res.json()).then(json =>
       this.mapDataToForecastInterface(json))
       .then(res => {
@@ -96,7 +96,7 @@ class App extends Component {
   }
 
   getWeather() {
-    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=${this.state.city}`;
+    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=Paris`;
     fetch(URL).then(res => res.json()).then(json => this.mapDataToWeatherInterface(json))
       .then(mappedData => this.getForecast(mappedData))
       .catch(error => {
