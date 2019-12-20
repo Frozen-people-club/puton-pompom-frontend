@@ -6,6 +6,10 @@
     padding-bottom: 8px;
     padding-top: 8px;
     align-items: center;
+
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 .dayWeatherItem__date {

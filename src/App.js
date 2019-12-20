@@ -126,8 +126,13 @@ class App extends Component {
     for (let i = 0; i < data.list.length; i++) {
       forecast.push(this.mapDataToWeatherInterface(data.list[i]));
     }
+    let indexs = [];
+    forecast.forEach((item, index) => {
+      if (item.dt_txt ==='00:00')
+        indexs.push(index)
+    })
     let current =
-    [forecast.slice(0, 8), forecast.slice(8, 16), forecast.slice(16, 24), forecast.slice(24, 32), forecast.slice(32, 40)]
+    [forecast.slice(0, 9), forecast.slice(indexs[0], indexs[1]+1), forecast.slice(indexs[1], indexs[2]+1), forecast.slice(indexs[2], indexs[3]+1), forecast.slice(indexs[3], indexs[4]+1)]
       /*'0': forecast.slice(0, 8),
       '1': forecast.slice(8, 16),
       '2': forecast.slice(16, 24),

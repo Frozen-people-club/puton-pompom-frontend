@@ -11,7 +11,7 @@ class DayWeatherList extends Component {
     render() {
 
         let list = [];
-        for (let i = 0; i < 8; i++)
+        for (let i = 0; i < this.props.data.length; i++)
             list.push(<DayWeatherItem temp={this.props.data[i].temperature} date={this.props.data[i].dt_txt} icon={this.props.data[i].icon} />);
         return (
             <div className="dayWeatherList">
