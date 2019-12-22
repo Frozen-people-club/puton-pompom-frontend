@@ -123,6 +123,11 @@ class App extends Component {
     this.setState(value);
   }
 
+  updateCity(self, value){
+    self.updateData(value);
+    self.getWeather();
+  }
+
   mapDataToForecastInterface = data => {
     let forecast = [];
     for (let i = 0; i < data.list.length; i++) {
@@ -183,7 +188,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Search />
+        <Search city={this.state.city} updateCity={this.updateCity} obj={this}/>
         <Calendar timezone = {weatherData.timezone}/>
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>

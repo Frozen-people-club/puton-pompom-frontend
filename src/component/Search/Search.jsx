@@ -4,17 +4,11 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {
-          city: this.props.city,
-        };
       }
 
     handleSubmit(e) {
-        this.setState({
-          city: this.input.value
-        });
-        this.getWeather();
-        e.preventDefault();
+        e.preventDefault();        
+        this.props.updateCity(this.props.obj,{city: this.input.value});
       }
 
     render() {
