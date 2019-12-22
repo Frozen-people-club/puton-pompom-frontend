@@ -197,7 +197,7 @@ class App extends Component {
             </label>
             <input className="Search__submit" type="submit" value="Submit" />
           </form>
-        <Calendar date={'5'}/>
+        <Calendar timezone = {weatherData.timezone}/>
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
             <div className={'row'}>
