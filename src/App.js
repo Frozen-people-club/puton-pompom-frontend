@@ -6,13 +6,13 @@ import DayWeatherList from './component/DayWeather/DayWeatherList';
 import ButtonMenu from './component/ButtonMenu/ButtonMenu';
 import * as Snow from 'react-snow-effect';
 import Calendar from './component/Calendar/Calendar';
+import Search from './component/Search/Search';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.updateData = this.updateData.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       weatherData: null,
       forecast: [],
@@ -145,7 +145,7 @@ class App extends Component {
   }
 
   getForecast(mappedData) {
-    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=Magnitogorsk`;
+    const URLF = `https://puton-pompom.herokuapp.com/api/v1.0/forecast?q=${this.state.city}`;
     fetch(URLF).then(res => res.json()).then(json =>
       this.mapDataToForecastInterface(json))
       .then(res => {
@@ -160,7 +160,7 @@ class App extends Component {
   }
 
   getWeather() {
-    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=Magnitogorsk`;
+    const URL = `https://puton-pompom.herokuapp.com/api/v1.0/current?q=${this.state.city}`;
     fetch(URL).then(res => res.json()).then(json => this.mapDataToWeatherInterface(json))
       .then(mappedData => this.getForecast(mappedData))
       .catch(error => {
@@ -170,14 +170,6 @@ class App extends Component {
         );
         this.setState({ error: error.message });
       });
-  }
-
-  handleSubmit(e) {
-    this.setState({
-      city: this.input.value
-    });
-    this.getWeather();
-    e.preventDefault();
   }
 
   render() {
@@ -191,12 +183,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <form className="Search" onSubmit={this.handleSubmit}>
-            <label>
-              <input className="Search__input" type="text" placeholder="Search the city.." ref={(input) => this.input = input} />
-            </label>
-            <input className="Search__submit" type="submit" value="Submit" />
-          </form>
+        <Search />
         <Calendar timezone = {weatherData.timezone}/>
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
