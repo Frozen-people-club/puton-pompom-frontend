@@ -16,11 +16,13 @@ class Calendar extends Component {
                 <div className="Calendar__icon">
                     <img src={icon} alt={'Calendar'} />
                 </div>
-                <div className="Calendar__date">
-                    {curr_month}, {today}
-                </div>
-                <div className="Calendar__time">
-                    <Time timezone = {this.props.timezone}/>
+                <div className="Calendar__wrapper">
+                    <div className="Calendar__time">
+                        <Time timezone = {this.props.timezone}/>
+                    </div>
+                    <div className="Calendar__date">
+                        {curr_month}, {today}
+                    </div>
                 </div>
             </div> )
     }
