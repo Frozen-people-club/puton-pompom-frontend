@@ -93,7 +93,8 @@ class App extends Component {
       wind_speed: Math.round(data.wind.speed * 3.6), // convert from m/s to km/h
       condition: data.cod,
       icon_desc: this.iconInterface(data.weather[0].icon),
-      timezone: data.timezone
+      timezone: data.timezone,
+      clothes: data.clothes["icon_id"]
     };
 
     let getWeekDay = (date) => {
@@ -195,7 +196,7 @@ class App extends Component {
             <div className={'row'}>
               {weatherData.icon_desc === 'SNOW' ?<Snow /> : <></>}
               <div className={'col-xl-5 offset-xl-1 col-lg-6'}>
-                <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc} timezone = {weatherData.timezone}/>
+                <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc} timezone = {weatherData.timezone} clothes={weatherData.clothes}/>
               </div>
               <div className={'col-xl-5 col-lg-6'}>
                 <DayWeatherList data={forecast[this.state.active]} />

@@ -16,7 +16,7 @@ class CurrentWeather extends Component {
                 </div>
                 <div className="background__1">
                     <div className="currentWeather__img">
-                        <img className="currentWeather__img__avocado" src={require('../img/avocado.svg')}
+                        <img className={`currentWeather__img__clothes ${this.props.clothes}`} src={require(`../img/${this.props.clothes}.png`)}
                              alt='avocado'/>
                     </div>
                 </div>
