@@ -6,6 +6,7 @@
 @import "./component/Button/button.scss";
 @import "./component/ButtonMenu/ButtonMenu.scss";
 @import "./component/Calendar/calendar.scss";
+@import "./component/Search/Search.scss";
 
 @font-face {
   font-family: Roboto; /* Имя шрифта */
@@ -33,27 +34,3 @@
     padding:50px;
   }
 }
-
-.Search {
-  display: flex;
-  flex-direction: column;
-}
-
-.Search__input {
-  outline:none;
-  padding: 10px 50px;
-  font-size: 18px;
-  line-height: 21px;
-  color: #7F8185;
-  background: #FFFFFF;
-  border: 4px solid #85C0DA;
-  box-sizing: border-box;
-  border-radius: 50px;
-}
-
-.Search__submit {
-  visibility: hidden;
-}
-
-
-
