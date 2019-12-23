@@ -3,21 +3,25 @@ import React, {Component} from 'react';
 class Search extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-      }
+        this.onChangeCity = this.onChangeCity.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
 
-    handleSubmit(e) {
-        e.preventDefault();        
-        this.props.updateCity(this.props.obj,{city: this.input.value});
-      }
+    onSubmit(e) {
+        e.preventDefault();
+    }
+    onChangeCity(e) {
+        this.props.updateData({city:  e.target.value});
+    }
 
     render() {
         return (
-            <form className="Search" onSubmit={this.handleSubmit}>
+            <form className="Search" onSubmit={this.onSubmit}>
                 <label>
-                <input className="Search__input" type="text" placeholder="Search the city.." ref={(input) => this.input = input} />
+                    <input className="Search__input" type="text" placeholder="Search the city.."
+                           ref={(input) => this.input = input} onChange={this.onChangeCity}/>
                 </label>
-                <input className="Search__submit" type="submit" value="Submit" />
+                <input className="Search__submit" type="submit" value="Submit"/>
             </form>
         )
     }

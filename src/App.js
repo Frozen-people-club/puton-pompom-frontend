@@ -24,6 +24,12 @@ class App extends Component {
   componentDidMount() {
     this.getWeather();
   }
+  componentDidUpdate(prevProps) {
+    // Популярный пример (не забудьте сравнить пропсы):
+    if (this.state.city !== prevProps.city) {
+      this.getWeather();
+    }
+  }
 
   iconInterface = (icon) => {
     switch(icon){
@@ -189,7 +195,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Search city={this.state.city} updateCity={this.updateCity} obj={this}/>
+        <Search updateData={this.updateData} city={this.state.city} updateCity={this.updateCity} obj={this}/>
         <Calendar timezone = {weatherData.timezone}/>
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
