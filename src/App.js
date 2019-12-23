@@ -194,9 +194,21 @@ class App extends Component {
           return <DayWeatherList  data={obj}/>})*/
 
     return (
+      
       <div className="App">
-        <Search updateData={this.updateData} city={this.state.city} updateCity={this.updateCity} obj={this}/>
-        <Calendar timezone = {weatherData.timezone}/>
+        <div className={'col-lg-10 offset-lg-2'}>
+          <div className={'container-fluid'}>
+            <div className={'row'}>
+              <div className={'col-lg-4 offset-lg-3'}>
+                <Search updateData={this.updateData} city={this.state.city} updateCity={this.updateCity} obj={this}/>
+              </div>
+              <div className={'col-lg-2 offset-xl-3 offset-lg-2'}>
+                <Calendar timezone = {weatherData.timezone}/>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
           <div className={'container-fluid'}>
             <div className={'row'}>
