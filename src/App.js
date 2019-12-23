@@ -199,7 +199,7 @@ class App extends Component {
           <div className={'container-fluid'}>
             <div className={'row'}>
               <div className={'col-lg-4 offset-lg-3'}>
-                <Search updateData={this.updateData} city={this.state.city} updateCity={this.updateCity} obj={this}/>
+                <Search updateData={this.updateData} city={this.state.city}/>
               </div>
               <div className={'col-lg-2 offset-xl-3 offset-lg-2'}>
                 <Calendar timezone = {weatherData.timezone}/>

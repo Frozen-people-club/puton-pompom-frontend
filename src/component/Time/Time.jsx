@@ -17,7 +17,15 @@ class Time extends Component {
             let currentMin = currentTime % 60;
             let timezone = this.props.timezone / 3600;
             currentHour = currentHour + timezone;
-            currentHour = (currentHour >= 24) ? (currentHour - 24) : currentHour;
+            if (currentHour >= 24 ) {
+                currentHour = currentHour  - 24;
+            }
+            else if (currentHour < 0) {
+                currentHour = 24 + currentHour;
+            }
+            if (currentMin < 0 ) {
+                currentMin = currentMin + 60;
+            } 
             let cur_hours = (currentHour / 10 < 1) ? ("0" + currentHour.toString()) : currentHour;
             let cur_min = (currentMin / 10 < 1) ? ("0" + currentMin.toString()) : currentMin;
             this.setState({
