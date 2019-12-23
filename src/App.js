@@ -132,7 +132,6 @@ class App extends Component {
 
   updateCity(self, value){
     self.updateData(value);
-    self.getWeather();
   }
 
   mapDataToForecastInterface = data => {
