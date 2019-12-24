@@ -6,8 +6,14 @@ class CurrentWeather extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showResults: false
         }
     }
+
+    onRender() {
+        setTimeout(this.setState({ showResults: true }), 3000);
+    }
+
     render() {
         return (
             <div className="currentWeather">
@@ -16,7 +22,7 @@ class CurrentWeather extends Component {
                 </div>
                 <div className="background__1">
                     <div className="currentWeather__img">
-                        <img className={`currentWeather__img__clothes ${this.props.clothes}`} src={require(`../img/${this.props.clothes}.png`)}
+                        <img onRender={this.onRender} className={`currentWeather__img__clothes ${ this.state.showResults ? this.props.clothes : null }`} src={require(`../img/${this.props.clothes}.png`)}
                              alt='avocado'/>
                     </div>
                 </div>
