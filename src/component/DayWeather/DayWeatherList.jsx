@@ -11,8 +11,7 @@ class DayWeatherList extends Component {
     }
     getTime = (date, timezone) =>{
         let dayHour = +date.slice(0, 2);
-        let time_zone = new Date().getTimezoneOffset()/ 60;
-        dayHour= dayHour + timezone/3600 + time_zone;
+        dayHour= dayHour + timezone/3600;
         if (dayHour < 0){
             dayHour = 24 + dayHour;
         }
