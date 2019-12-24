@@ -24,9 +24,9 @@ class App extends Component {
   componentDidMount() {
     this.getWeather();
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     // Популярный пример (не забудьте сравнить пропсы):
-    if (this.state.city !== prevProps.city) {
+    if (this.state.city !== prevState.city) {
       this.getWeather();
     }
   }
@@ -100,7 +100,8 @@ class App extends Component {
       condition: data.cod,
       icon_desc: this.iconInterface(data.weather[0].icon),
       timezone: data.timezone,
-      clothes: data.clothes["icon_id"]
+      clothes: data.clothes["icon_id"],
+      //dayCur: +data.dt_txt.slice(11, 13) + data.timezone/3600
     };
 
     let getWeekDay = (date) => {
@@ -112,6 +113,7 @@ class App extends Component {
       mapped.dt_txt = data.dt_txt.slice(11, 16);
       let day = new Date(+data.dt_txt.slice(0, 4), (+data.dt_txt.slice(5, 7) - 1), +data.dt_txt.slice(8, 10))
       mapped.dayWeek = getWeekDay(day);
+
     }
 
     if (data.weather[0].icon) {
@@ -138,7 +140,7 @@ class App extends Component {
     let forecast = [];
     for (let i = 0; i < data.list.length; i++) {
       forecast.push(this.mapDataToWeatherInterface(data.list[i]));
-    }
+    };
     let indexs = [];
     forecast.forEach((item, index) => {
       if (item.dt_txt ==='00:00')
@@ -216,7 +218,7 @@ class App extends Component {
                 <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc} timezone = {weatherData.timezone} clothes={weatherData.clothes}/>
               </div>
               <div className={'col-xl-5 col-lg-6'}>
-                <DayWeatherList data={forecast[this.state.active]} />
+                <DayWeatherList data={forecast[this.state.active]} timezone = {weatherData.timezone} />
               </div>
               <div className={'col-xl-1 col-lg-1'}></div>
             </div>
