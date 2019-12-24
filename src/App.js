@@ -25,7 +25,6 @@ class App extends Component {
     this.getWeather();
   }
   componentDidUpdate(prevProps, prevState) {
-    // Популярный пример (не забудьте сравнить пропсы):
     if (this.state.city !== prevState.city) {
       this.getWeather();
     }
@@ -96,12 +95,11 @@ class App extends Component {
       icon_id: data.weather[0].id,
       temperature: Math.round(data.main.temp - 273.15),
       description: data.weather[0].description,
-      wind_speed: Math.round(data.wind.speed * 3.6), // convert from m/s to km/h
+      wind_speed: Math.round(data.wind.speed * 3.6),
       condition: data.cod,
       icon_desc: this.iconInterface(data.weather[0].icon),
       timezone: data.timezone,
       clothes: data.clothes["icon_id"],
-      //dayCur: +data.dt_txt.slice(11, 13) + data.timezone/3600
     };
 
     let getWeekDay = (date) => {
@@ -132,10 +130,6 @@ class App extends Component {
     this.setState(value);
   }
 
-  updateCity(self, value){
-    self.updateData(value);
-  }
-
   mapDataToForecastInterface = data => {
     let forecast = [];
     for (let i = 0; i < data.list.length; i++) {
@@ -148,12 +142,6 @@ class App extends Component {
     })
     let current =
     [forecast.slice(0, 9), forecast.slice(indexs[0], indexs[1]+1), forecast.slice(indexs[1], indexs[2]+1), forecast.slice(indexs[2], indexs[3]+1), forecast.slice(indexs[3], indexs[4]+1)]
-      /*'0': forecast.slice(0, 8),
-      '1': forecast.slice(8, 16),
-      '2': forecast.slice(16, 24),
-      '3': forecast.slice(24, 32),
-      '4': forecast.slice(32, 40)
-    };*/
     return current;
   }
 
@@ -190,37 +178,31 @@ class App extends Component {
     const forecast = this.state.forecast;
     if (!weatherData) return <div>Loading</div>;
     if (!forecast) return <div>Loading</div>;
-
-    /*let list = this.state.forecast.map((obj, i) => {
-          return <DayWeatherList  data={obj}/>})*/
-
     return (
       
       <div className="App">
-        <div className={'col-lg-10 offset-lg-2'}>
           <div className={'container-fluid'}>
-            <div className={'row'}>
-              <div className={'col-lg-4 offset-lg-3'}>
+            <div className={'row align-items-center'} >
+              <div className={'col-md-7 offset-md-2'}>
                 <Search updateData={this.updateData} city={this.state.city}/>
               </div>
-              <div className={'col-lg-2 offset-xl-3 offset-lg-2'}>
+              <div className={'col-md-3'}>
                 <Calendar timezone = {weatherData.timezone}/>
               </div>
             </div>
-          </div>
         </div>
         
-        <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 App__slider'}>
+        <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12 App__slider'}>
           <div className={'container-fluid'}>
-            <div className={'row'}>
+            <div className={'row align-items-center'}>
               {weatherData.icon_desc === 'SNOW' ?<Snow /> : <></>}
-              <div className={'col-xl-5 offset-xl-1 col-lg-6'}>
+              <div className={'col-xl-5 offset-xl-1 col-lg-6 col-md-6'}>
                 <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc} timezone = {weatherData.timezone} clothes={weatherData.clothes}/>
               </div>
-              <div className={'col-xl-5 col-lg-6'}>
+              <div className={'col-xl-5 col-lg-6 col-md-6'}>
                 <DayWeatherList data={forecast[this.state.active]} timezone = {weatherData.timezone} />
               </div>
-              <div className={'col-xl-1 col-lg-1'}></div>
+              <div className={'col-xl-1 col-lg-0 col-md-0'}></div>
             </div>
           </div>
         </div>

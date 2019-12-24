@@ -21,11 +21,11 @@ class CurrentWeather extends Component {
                     </div>
                 </div>
                 <div className='currentWeather__weather'>
-                    <div className='currentWeather__temp'>
-                        {this.props.temp}°
-                    </div>
                     <div className='currentWeather__description'>
                         {this.props.description}
+                    </div>
+                    <div className='currentWeather__temp'>
+                        {this.props.temp}°
                     </div>
                 </div>
                 <div className='currentWeather__icon-weather'>

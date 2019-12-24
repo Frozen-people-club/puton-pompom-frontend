@@ -14,13 +14,20 @@
 
 .dayWeatherItem__date {
     font-size: 20px;
-    line-height: 23px;
+    @include media-breakpoint-down (md) {
+        font-size: 14px
+    }
 }
 
 .dayWeatherItem__temp {
     font-size: 23px;
     line-height: 27px;
     width: 42px;
+    text-align: right;
+    @include media-breakpoint-down (md) {
+        font-size: 17px
+    }
+
 }
 .dayWeatherItem__icon {
     display: inline-flex;

@@ -19,7 +19,8 @@ class DayWeatherList extends Component {
         else if (dayHour >=24) {
             dayHour = dayHour - 24;
         }
-        return dayHour.toString()+':00';
+        let cur_hours = (dayHour / 10 < 1) ? ("0" + dayHour.toString()) :dayHour;
+        return cur_hours+':00';
     }
     render() {
 
