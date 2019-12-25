@@ -21,7 +21,8 @@
     "typescript": "^3.7.4"
   },
   "engines": {
-    "node": "8.10.0"},
+    "node": "8.10.0"
+  },
   "scripts": {
     "prod": "npm install serve && serve -s build",
     "start": "react-scripts start",

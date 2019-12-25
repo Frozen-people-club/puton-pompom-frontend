@@ -218,7 +218,7 @@ class App extends Component {
       
       <div className="App">
           <div className={'container-fluid p-0'}>
-            <div className={'row align-items-center'} >
+            <div className={'row align-items-center m-0'} >
               <div className={'col-md-7 offset-md-2 col-12'}>
                 <Search updateData={this.updateData} city={this.state.city}/>
               </div>
