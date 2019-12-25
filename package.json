@@ -23,6 +23,7 @@
   "engines": {
     "node": "8.10.0"},
   "scripts": {
+    "prod": "serve -s build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
