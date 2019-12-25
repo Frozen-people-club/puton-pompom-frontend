@@ -169,6 +169,10 @@ class App extends Component {
       let item_date = new Date(item.date - server_timezone)
       var timeDiff = Math.abs(first_date.getTime() - item_date.getTime())
       var diffDays = Math.ceil(timeDiff / (1000*3600*24)) - 1
+
+      if(diffDays < 0){
+        diffDays = 0
+      }
       
       if(diffDays  >= new_forecast.length){
         new_forecast.push([item])
