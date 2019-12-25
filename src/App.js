@@ -7,6 +7,7 @@ import ButtonMenu from './component/ButtonMenu/ButtonMenu';
 import * as Snow from 'react-snow-effect';
 import Calendar from './component/Calendar/Calendar';
 import Search from './component/Search/Search';
+import { slide as Menu } from 'react-burger-menu'
 
 class App extends Component {
 
@@ -220,28 +221,28 @@ class App extends Component {
     return (
       
       <div className="App">
-          <div className={'container-fluid'}>
-            <div className={'row align-items-center'} >
-              <div className={'col-md-7 offset-md-2'}>
+          <div className={'container-fluid p-0'}>
+            <div className={'row align-items-center m-0'} >
+              <div className={'col-md-7 offset-md-2 col-12'}>
                 <Search updateData={this.updateData} city={this.state.city}/>
               </div>
-              <div className={'col-md-3'}>
+              <div className={'col-md-3 col-0'}>
                 <Calendar timezone = {weatherData.timezone}/>
               </div>
             </div>
         </div>
         
-        <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12 App__slider'}>
+        <div className={'col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12 col-12 App__slider'}>
           <div className={'container-fluid'}>
             <div className={'row align-items-center'}>
               {weatherData.icon_desc === 'SNOW' ?<Snow /> : <></>}
-              <div className={'col-xl-5 offset-xl-1 col-lg-6 col-md-6'}>
+              <div className={'col-xl-5 offset-xl-1 col-lg-6 col-md-6 col-12 offset-0 '}>
                 <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc} timezone = {weatherData.timezone} clothes={weatherData.clothes}/>
               </div>
-              <div className={'col-xl-5 col-lg-6 col-md-6'}>
+              <div className={'col-xl-5 col-lg-6 col-md-6 col-12'}>
                 <DayWeatherList data={forecast[this.state.active]}/>
               </div>
-              <div className={'col-xl-1 col-lg-0 col-md-0'}></div>
+              <div className={'col-xl-1 col-lg-0 col-md-0 col-0'}></div>
             </div>
           </div>
         </div>

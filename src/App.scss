@@ -1,6 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./component/currentweather.scss";
-@import "./component/DayWeather/DayWeather.scss";
 @import "./component/DayWeather/DayWeatherItem.scss";
 @import "./component/DayWeather/DayWeatherList.scss";
 @import "./component/Button/button.scss";
@@ -35,5 +34,8 @@
   }
   @include media-breakpoint-down(md){
     padding:30px;
+  }
+  @include media-breakpoint-down(sm){
+    padding:0px;
   }
 }

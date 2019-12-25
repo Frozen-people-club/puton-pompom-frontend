@@ -1,1 +1,2 @@
-web: node App.js
+
+web: npm run prod

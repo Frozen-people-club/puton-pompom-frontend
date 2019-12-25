@@ -7,16 +7,24 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
     "node-sass": "^4.13.0",
+    "popper.js": "^1.16.0",
     "react": "^16.12.0",
     "react-animated-weather": "^3.0.0",
     "react-dom": "^16.12.0",
     "react-rain-animation": "^1.0.4",
     "react-scripts": "3.3.0",
     "react-snow": "0.0.1",
-    "react-snow-effect": "^1.2.0"
+    "react-snow-effect": "^1.2.0",
+    "react-burger-menu": "^2.6.13",
+    "typescript": "^3.7.4"
+  },
+  "engines": {
+    "node": "8.10.0"
   },
   "scripts": {
+    "prod": "npm install serve && serve -s build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

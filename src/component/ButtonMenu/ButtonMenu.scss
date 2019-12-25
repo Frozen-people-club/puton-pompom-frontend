@@ -3,4 +3,8 @@
   @include media-breakpoint-down (md) {
    margin-top: 50px;
   }
+  @include media-breakpoint-down (sm) {
+    display: none;
+   }
+  
 }
