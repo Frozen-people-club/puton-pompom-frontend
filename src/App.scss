@@ -35,4 +35,7 @@
   @include media-breakpoint-down(md){
     padding:30px;
   }
+  @include media-breakpoint-down(sm){
+    padding:0px;
+  }
 }

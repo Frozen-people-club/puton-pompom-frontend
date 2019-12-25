@@ -22,7 +22,7 @@ class CurrentWeather extends Component {
                 </div>
                 <div className="background__1">
                     <div className="currentWeather__img">
-                        <img onRender={this.onRender} className={`currentWeather__img__clothes ${ this.state.showResults ? this.props.clothes : null }`} src={require(`../img/${this.props.clothes}.png`)}
+                        <img onRender={this.onRender}  className={`currentWeather__img__clothes ${this.props.clothes}`} src={require(`../img/${this.props.clothes}.png`)}
                              alt='avocado'/>
                     </div>
                 </div>

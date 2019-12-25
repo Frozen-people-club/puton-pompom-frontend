@@ -5,7 +5,10 @@
 .Calendar {
   display: flex;
   flex-direction: row;
-  align-items: center
+  align-items: center;
+  @include media-breakpoint-down (sm) {
+    display: none;
+}
 }
 .Calendar__wrapper {
   margin-left: 10px;
