@@ -13,6 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.updateData = this.updateData.bind(this);
+    this.getTime = this.getTime.bind(this);
     this.state = {
       weatherData: null,
       forecast: [],
@@ -100,6 +101,7 @@ class App extends Component {
       icon_desc: this.iconInterface(data.weather[0].icon),
       timezone: data.timezone,
       clothes: data.clothes["icon_id"],
+      date_txt: "00:00"
     };
 
     let getWeekDay = (date) => {
@@ -130,19 +132,52 @@ class App extends Component {
     this.setState(value);
   }
 
+  getTime = (date, timezone) =>{
+    let dayHour = +date.slice(0, 2);
+    dayHour= dayHour + timezone/3600;
+    if (dayHour < 0){
+        dayHour = 24 + dayHour;
+    }
+    else if (dayHour >=24) {
+        dayHour = dayHour - 24;
+    }
+    let cur_hours = (dayHour / 10 < 1) ? ("0" + dayHour.toString()) :dayHour;
+    return cur_hours+':00';
+}
+
   mapDataToForecastInterface = data => {
-    let forecast = [];
+    let forecast = []
     for (let i = 0; i < data.list.length; i++) {
       forecast.push(this.mapDataToWeatherInterface(data.list[i]));
     };
-    let indexs = [];
-    forecast.forEach((item, index) => {
-      if (item.dt_txt ==='00:00')
-        indexs.push(index)
+
+
+    let timezone = data.city.timezone * 1000
+    let server_timezone = new Date().getTimezoneOffset() * 60000 * -1
+    forecast.forEach((item)=>{
+      item.date = item.date + timezone
+      let date = new Date(item.date - server_timezone)
+      let cur_hours = (date.getHours() / 10 < 1) ? ("0" + date.getHours().toString()) : date.getHours();
+      let cur_min = (date.getMinutes()/ 10 < 1) ? ("0" + date.getMinutes().toString()) : date.getMinutes();
+      item.date_txt =  cur_hours+ ":" + cur_min;
     })
-    let current =
-    [forecast.slice(0, 9), forecast.slice(indexs[0], indexs[1]+1), forecast.slice(indexs[1], indexs[2]+1), forecast.slice(indexs[2], indexs[3]+1), forecast.slice(indexs[3], indexs[4]+1)]
-    return current;
+    let new_forecast = []
+    let first_dt = forecast[0].date
+    let first_date = new Date(first_dt)
+    first_date = new Date(first_date.getFullYear(), first_date.getMonth(), first_date.getDate(), 0, 0, 0, 0)
+    forecast.forEach((item) => {
+      let item_date = new Date(item.date - server_timezone)
+      var timeDiff = Math.abs(first_date.getTime() - item_date.getTime())
+      var diffDays = Math.ceil(timeDiff / (1000*3600*24)) - 1
+      
+      if(diffDays  >= new_forecast.length){
+        new_forecast.push([item])
+      }
+      else{
+        new_forecast[diffDays].push(item)
+      }
+    })
+    return new_forecast;
   }
 
   getForecast(mappedData) {
@@ -200,7 +235,7 @@ class App extends Component {
                 <CurrentWeather city={weatherData.city} temp={weatherData.temperature} description={weatherData.description} icon={weatherData.icon_desc} timezone = {weatherData.timezone} clothes={weatherData.clothes}/>
               </div>
               <div className={'col-xl-5 col-lg-6 col-md-6'}>
-                <DayWeatherList data={forecast[this.state.active]} timezone = {weatherData.timezone} />
+                <DayWeatherList data={forecast[this.state.active]}/>
               </div>
               <div className={'col-xl-1 col-lg-0 col-md-0'}></div>
             </div>

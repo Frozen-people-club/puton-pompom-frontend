@@ -69,7 +69,7 @@ class DayWeatherItem extends Component {
         return (
             <div className="dayWeatherItem">
                 <div className="dayWeatherItem__date">
-                    {this.props.time}
+                    {this.props.date}
                 </div>
                 <div className="dayWeatherItem__icon">
                     <ReactAnimatedWeather
